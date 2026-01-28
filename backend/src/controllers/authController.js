@@ -72,4 +72,5 @@ const getMe = async (req, res) => {
   return sendSuccess(res, req.user, 'User profile fetched');
 };
 
+// Auth controller exports
 module.exports = { register, login, refresh, getMe };

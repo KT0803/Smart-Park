@@ -32,4 +32,5 @@ router.post(
 router.post('/refresh', refresh);
 router.get('/me', protect, getMe);
 
+// Auth routes export
 module.exports = router;
