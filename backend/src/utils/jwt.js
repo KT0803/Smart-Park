@@ -20,4 +20,5 @@ const verifyRefreshToken = (token) => {
   return jwt.verify(token, process.env.JWT_REFRESH_SECRET);
 };
 
+// JWT helpers export
 module.exports = { generateToken, generateRefreshToken, verifyToken, verifyRefreshToken };
