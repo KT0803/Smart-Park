@@ -22,4 +22,5 @@ const protect = async (req, res, next) => {
   }
 };
 
+// Auth middleware export
 module.exports = { protect };
