@@ -10,4 +10,5 @@ const authorize = (...roles) => {
   };
 };
 
+// Role guard export
 module.exports = { authorize };
