@@ -79,4 +79,5 @@ const deleteLot = async (req, res, next) => {
   }
 };
 
+// Lot controller exports
 module.exports = { getLots, getLotById, createLot, updateLot, deleteLot };

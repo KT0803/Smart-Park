@@ -22,4 +22,5 @@ const parkingLotSchema = new mongoose.Schema(
 parkingLotSchema.index({ location: 1 });
 parkingLotSchema.index({ availableSlots: 1 });
 
+// ParkingLot model
 module.exports = mongoose.model('ParkingLot', parkingLotSchema);

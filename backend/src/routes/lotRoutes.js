@@ -27,4 +27,5 @@ router.post(
 router.put('/:id', protect, authorize('admin', 'manager'), updateLot);
 router.delete('/:id', protect, authorize('admin'), deleteLot);
 
+// Lot routes
 module.exports = router;
