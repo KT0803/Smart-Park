@@ -15,4 +15,5 @@ const parkingSlotSchema = new mongoose.Schema(
 parkingSlotSchema.index({ lotId: 1, status: 1 });
 parkingSlotSchema.index({ lotId: 1, slotNumber: 1 }, { unique: true });
 
+// ParkingSlot model
 module.exports = mongoose.model('ParkingSlot', parkingSlotSchema);
