@@ -79,5 +79,6 @@ const deleteLot = async (req, res, next) => {
   }
 };
 
+// Fixed: slot availability is now queried per lot using lotId filter
 // Lot controller exports
 module.exports = { getLots, getLotById, createLot, updateLot, deleteLot };
