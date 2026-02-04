@@ -25,4 +25,5 @@ router.get('/lot/:lotId', protect, authorize('manager', 'admin'), getLotBookings
 router.put('/:id/cancel', protect, cancelBooking);
 router.put('/:id/complete', protect, authorize('manager', 'admin', 'driver'), completeBooking);
 
+// Booking routes
 module.exports = router;

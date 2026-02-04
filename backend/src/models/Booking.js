@@ -24,4 +24,5 @@ bookingSchema.index({ userId: 1, status: 1 });
 bookingSchema.index({ slotId: 1, status: 1 });
 bookingSchema.index({ lotId: 1, checkIn: -1 });
 
+// Booking model
 module.exports = mongoose.model('Booking', bookingSchema);

@@ -135,4 +135,5 @@ const getLotBookings = async (req, res, next) => {
   }
 };
 
+// Booking controller
 module.exports = { createBooking, getMyBookings, cancelBooking, completeBooking, getLotBookings };
