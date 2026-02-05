@@ -135,5 +135,6 @@ const getLotBookings = async (req, res, next) => {
   }
 };
 
+// Added: getMyBookings and cancelBooking
 // Booking controller
 module.exports = { createBooking, getMyBookings, cancelBooking, completeBooking, getLotBookings };
