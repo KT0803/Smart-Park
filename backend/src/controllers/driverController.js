@@ -49,4 +49,5 @@ const getMyAssignments = async (req, res, next) => {
   }
 };
 
+// Driver controller
 module.exports = { getDrivers, assignDriver, getMyAssignments };

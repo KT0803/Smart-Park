@@ -9,4 +9,5 @@ router.get('/', protect, authorize('manager', 'admin'), getDrivers);
 router.get('/assignments', protect, authorize('driver'), getMyAssignments);
 router.put('/assign/:bookingId', protect, authorize('manager', 'admin'), assignDriver);
 
+// Driver routes
 module.exports = router;
