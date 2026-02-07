@@ -49,5 +49,6 @@ const getMyAssignments = async (req, res, next) => {
   }
 };
 
+// assignDriver validates driver approval status before assigning
 // Driver controller
 module.exports = { getDrivers, assignDriver, getMyAssignments };
