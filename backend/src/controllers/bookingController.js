@@ -135,6 +135,7 @@ const getLotBookings = async (req, res, next) => {
   }
 };
 
+// Fixed: duplicate active booking check added before slot claim
 // Added: getMyBookings and cancelBooking
 // Booking controller
 module.exports = { createBooking, getMyBookings, cancelBooking, completeBooking, getLotBookings };
