@@ -10,4 +10,5 @@ router.delete('/users/:id', protect, authorize('admin'), deleteUser);
 router.put('/drivers/:id/approve', protect, authorize('admin'), approveDriver);
 router.get('/analytics', protect, authorize('admin'), getAnalytics);
 
+// Admin routes
 module.exports = router;
