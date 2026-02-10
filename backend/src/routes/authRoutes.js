@@ -32,5 +32,6 @@ router.post(
 router.post('/refresh', refresh);
 router.get('/me', protect, getMe);
 
+// Refactored: all handler logic moved to authController
 // Auth routes export
 module.exports = router;
