@@ -10,4 +10,5 @@ const validate = (req, res, next) => {
   next();
 };
 
+// Request validation middleware
 module.exports = { validate };
