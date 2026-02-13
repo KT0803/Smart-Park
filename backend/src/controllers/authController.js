@@ -72,5 +72,6 @@ const getMe = async (req, res) => {
   return sendSuccess(res, req.user, 'User profile fetched');
 };
 
+// Refresh endpoint validates refreshToken and issues new token pair
 // Auth controller exports
 module.exports = { register, login, refresh, getMe };
