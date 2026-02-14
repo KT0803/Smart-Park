@@ -7,6 +7,7 @@ import ManagerDashboard from './pages/ManagerDashboard';
 import DriverConsole from './pages/DriverConsole';
 import AdminDashboard from './pages/AdminDashboard';
 
+// Root application component with routing
 export default function App() {
   return (
     <AuthProvider>
