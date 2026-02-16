@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
+// Redirects unauthenticated users and wrong-role users
 export default function ProtectedRoute({ children, allowedRoles }) {
   const { user, isAuth } = useAuth();
 
