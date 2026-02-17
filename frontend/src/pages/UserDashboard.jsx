@@ -8,6 +8,7 @@ import BookingModal from '../components/BookingModal';
 import BookingTable from '../components/BookingTable';
 import toast from 'react-hot-toast';
 
+// User-facing dashboard for browsing lots and managing bookings
 export default function UserDashboard() {
   const { user } = useAuth();
   const [lots, setLots] = useState([]);
