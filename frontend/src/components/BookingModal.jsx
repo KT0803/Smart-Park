@@ -4,6 +4,7 @@ import { bookingsAPI } from '../api/bookings';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 
+// Slot grid selector with confirm flow
 export default function BookingModal({ lot, onClose, onBooked }) {
   const { user } = useAuth();
   const [slots, setSlots] = useState([]);
