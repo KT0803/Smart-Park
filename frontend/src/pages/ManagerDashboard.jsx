@@ -5,6 +5,7 @@ import { driversAPI } from '../api/admin';
 import Navbar from '../components/Navbar';
 import toast from 'react-hot-toast';
 
+// Manager dashboard – parking operations overview
 export default function ManagerDashboard() {
   const [lots, setLots] = useState([]);
   const [drivers, setDrivers] = useState([]);
