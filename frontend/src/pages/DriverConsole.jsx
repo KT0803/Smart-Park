@@ -10,6 +10,7 @@ const STATUS_COLORS = {
   pending: 'badge-pending',
 };
 
+// Driver console with stats and assignment list
 export default function DriverConsole() {
   const [assignments, setAssignments] = useState([]);
   const [loading, setLoading] = useState(true);
