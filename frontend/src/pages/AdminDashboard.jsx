@@ -3,6 +3,7 @@ import { adminAPI } from '../api/admin';
 import Navbar from '../components/Navbar';
 import toast from 'react-hot-toast';
 
+// Admin dashboard: analytics, user management, driver approvals
 export default function AdminDashboard() {
   const [analytics, setAnalytics] = useState(null);
   const [users, setUsers] = useState([]);
