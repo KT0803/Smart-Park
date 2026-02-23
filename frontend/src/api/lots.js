@@ -1,5 +1,6 @@
 import api from './axiosInstance';
 
+// Parking lots API service
 export const lotsAPI = {
   getAll: (params) => api.get('/lots', { params }),
   getById: (id) => api.get(`/lots/${id}`),

@@ -1,5 +1,6 @@
 import api from './axiosInstance';
 
+// Auth API service
 export const authAPI = {
   register: (data) => api.post('/auth/register', data),
   login: (data) => api.post('/auth/login', data),
