@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
+// Fixed: role-mismatch now redirects to correct role dashboard instead of /login loop
 // Redirects unauthenticated users and wrong-role users
 export default function ProtectedRoute({ children, allowedRoles }) {
   const { user, isAuth } = useAuth();
