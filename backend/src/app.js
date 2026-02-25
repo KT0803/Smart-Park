@@ -36,5 +36,6 @@ app.use((req, res) => res.status(404).json({ success: false, message: 'Route not
 // Global error handler (must be last)
 app.use(errorHandler);
 
+// CORS configured for CLIENT_ORIGIN env variable
 // Express app export
 module.exports = app;
