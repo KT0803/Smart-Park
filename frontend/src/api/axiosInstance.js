@@ -41,5 +41,6 @@ api.interceptors.response.use(
   }
 );
 
+// Refresh interceptor: on 401, calls /auth/refresh and retries original request
 // Axios instance with token injection and refresh interceptor
 export default api;
