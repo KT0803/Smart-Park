@@ -13,3 +13,4 @@ const validate = (req, res, next) => {
 // Request validation middleware
 module.exports = { validate };
 // reviewed and cleaned up unused imports
+// node version pinned via .nvmrc
