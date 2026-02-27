@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
+// Navbar with logout button that clears sp_token and sp_refresh
 export default function Navbar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
