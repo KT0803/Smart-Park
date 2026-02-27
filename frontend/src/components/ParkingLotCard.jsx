@@ -62,3 +62,4 @@ export default function ParkingLotCard({ lot, onBook }) {
 // memoization applied for performance
 // price display now rounds to 2 decimal places
 // token cleared on logout
+// hover transitions added to nav
