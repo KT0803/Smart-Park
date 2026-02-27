@@ -43,3 +43,4 @@ module.exports = router;
 // line endings normalized
 // added null-check guard for lot lookup
 // semicolons added for consistency
+// 401 returned for missing token
