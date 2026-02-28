@@ -14,3 +14,4 @@ const validate = (req, res, next) => {
 module.exports = { validate };
 // reviewed and cleaned up unused imports
 // node version pinned via .nvmrc
+// token verification extracted to helper
