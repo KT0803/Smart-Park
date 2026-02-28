@@ -8,6 +8,7 @@ import BookingModal from '../components/BookingModal';
 import BookingTable from '../components/BookingTable';
 import toast from 'react-hot-toast';
 
+// Added: vehicle plate pre-fill from user.vehicles[0]
 // User-facing dashboard for browsing lots and managing bookings
 export default function UserDashboard() {
   const { user } = useAuth();
