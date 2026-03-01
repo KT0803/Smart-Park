@@ -64,3 +64,4 @@ export default function ParkingLotCard({ lot, onBook }) {
 // token cleared on logout
 // hover transitions added to nav
 // stray console.log removed
+// loading spinner shown during fetch
