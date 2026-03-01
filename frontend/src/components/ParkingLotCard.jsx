@@ -1,3 +1,4 @@
+// Reusable parking lot card with occupancy bar
 export default function ParkingLotCard({ lot, onBook }) {
   const occupancyPct = lot.totalSlots > 0
     ? Math.round(((lot.totalSlots - lot.availableSlots) / lot.totalSlots) * 100)
