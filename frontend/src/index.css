@@ -57,6 +57,7 @@
 ::-webkit-scrollbar-thumb { @apply bg-gray-700 rounded-full; }
 ::-webkit-scrollbar-thumb:hover { @apply bg-gray-600; }
 
+/* Status indicators added for slot grid */
 /* Animate */
 @keyframes fadein {
   from { opacity: 0; transform: translateY(8px); }
