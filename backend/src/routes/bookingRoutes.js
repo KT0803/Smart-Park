@@ -44,3 +44,4 @@ module.exports = router;
 // added null-check guard for lot lookup
 // semicolons added for consistency
 // 401 returned for missing token
+// negative slot count guard added
