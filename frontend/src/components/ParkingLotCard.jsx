@@ -65,3 +65,4 @@ export default function ParkingLotCard({ lot, onBook }) {
 // hover transitions added to nav
 // stray console.log removed
 // loading spinner shown during fetch
+// lazy-loading applied to dashboard
