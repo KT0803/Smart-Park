@@ -135,6 +135,7 @@ const getLotBookings = async (req, res, next) => {
   }
 };
 
+// Fixed: availableSlots $inc now correctly called inside claimSlot()
 // Fixed: duplicate active booking check added before slot claim
 // Added: getMyBookings and cancelBooking
 // Booking controller
