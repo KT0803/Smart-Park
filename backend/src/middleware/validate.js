@@ -16,3 +16,4 @@ module.exports = { validate };
 // node version pinned via .nvmrc
 // token verification extracted to helper
 // JSDoc added to auth middleware
+// booking validation moved to middleware
