@@ -8,3 +8,4 @@ const sendError = (res, message = 'Server error', statusCode = 500) => {
 
 // Response helpers
 module.exports = { sendSuccess, sendError };
+// services layer documented
