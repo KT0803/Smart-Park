@@ -10,6 +10,7 @@ const STATUS_COLORS = {
   pending: 'badge-pending',
 };
 
+// Added: polling every 30s to refresh assignments
 // Driver console with stats and assignment list
 export default function DriverConsole() {
   const [assignments, setAssignments] = useState([]);

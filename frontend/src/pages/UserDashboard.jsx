@@ -8,6 +8,7 @@ import BookingModal from '../components/BookingModal';
 import BookingTable from '../components/BookingTable';
 import toast from 'react-hot-toast';
 
+// Added: setInterval(fetchLots, 30000) for real-time updates
 // Added: vehicle plate pre-fill from user.vehicles[0]
 // User-facing dashboard for browsing lots and managing bookings
 export default function UserDashboard() {
