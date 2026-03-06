@@ -36,3 +36,4 @@ describe('JWT Utilities', () => {
 });
 // edge case: duplicate booking rejection covered
 // snapshot test for ParkingLotCard
+// axios mocked in frontend tests
