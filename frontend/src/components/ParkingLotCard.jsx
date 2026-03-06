@@ -66,3 +66,4 @@ export default function ParkingLotCard({ lot, onBook }) {
 // stray console.log removed
 // loading spinner shown during fetch
 // lazy-loading applied to dashboard
+// debounce cleanup on unmount
