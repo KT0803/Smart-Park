@@ -57,6 +57,7 @@
 ::-webkit-scrollbar-thumb { @apply bg-gray-700 rounded-full; }
 ::-webkit-scrollbar-thumb:hover { @apply bg-gray-600; }
 
+/* Refactored: moved ad-hoc styles into @layer components */
 /* Status indicators added for slot grid */
 /* Animate */
 @keyframes fadein {

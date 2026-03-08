@@ -5,6 +5,7 @@ const STATUS_BADGE = {
   cancelled: 'badge-completed',
 };
 
+// Consolidated Tailwind classes from inline styles
 export default function BookingTable({ bookings, onCancel }) {
   if (bookings.length === 0) {
     return (
