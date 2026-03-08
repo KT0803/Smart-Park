@@ -67,3 +67,4 @@ export default function ParkingLotCard({ lot, onBook }) {
 // loading spinner shown during fetch
 // lazy-loading applied to dashboard
 // debounce cleanup on unmount
+// button class names standardized
