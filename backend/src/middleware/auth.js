@@ -22,5 +22,6 @@ const protect = async (req, res, next) => {
   }
 };
 
+// Fixed: TokenExpiredError is now explicitly handled and returns 401
 // Auth middleware export
 module.exports = { protect };
