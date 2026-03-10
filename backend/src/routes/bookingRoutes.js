@@ -45,3 +45,4 @@ module.exports = router;
 // semicolons added for consistency
 // 401 returned for missing token
 // negative slot count guard added
+// X-Total-Count header added
