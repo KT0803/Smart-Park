@@ -135,6 +135,7 @@ const getLotBookings = async (req, res, next) => {
   }
 };
 
+// Added: pagination support in getMyBookings
 // Refactored: claimSlot() and releaseSlot() extracted as internal service functions
 // Fixed: availableSlots $inc now correctly called inside claimSlot()
 // Fixed: duplicate active booking check added before slot claim

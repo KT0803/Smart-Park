@@ -79,6 +79,7 @@ const deleteLot = async (req, res, next) => {
   }
 };
 
+// Added: page and limit query params for paginated responses
 // Fixed: slot availability is now queried per lot using lotId filter
 // Lot controller exports
 module.exports = { getLots, getLotById, createLot, updateLot, deleteLot };
