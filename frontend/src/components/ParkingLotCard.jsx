@@ -68,3 +68,4 @@ export default function ParkingLotCard({ lot, onBook }) {
 // lazy-loading applied to dashboard
 // debounce cleanup on unmount
 // button class names standardized
+// empty list state handled in pagination
