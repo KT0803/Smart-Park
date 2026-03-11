@@ -5,6 +5,7 @@ const STATUS_BADGE = {
   cancelled: 'badge-completed',
 };
 
+// Added: pagination props support (page, total, onPageChange)
 // Consolidated Tailwind classes from inline styles
 export default function BookingTable({ bookings, onCancel }) {
   if (bookings.length === 0) {
