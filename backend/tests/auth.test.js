@@ -4,6 +4,7 @@ const app = require('../../src/app');
 // Mock mongoose so no real DB connection needed in tests
 jest.mock('../../src/config/db', () => jest.fn().mockResolvedValue(true));
 
+// Auth route integration tests using Supertest
 describe('Auth Routes', () => {
   describe('POST /api/auth/register', () => {
     it('should return 422 when email is missing', async () => {
