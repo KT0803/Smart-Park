@@ -14,6 +14,7 @@ jest.mock('../../src/models/User');
 
 const mockUserToken = generateToken({ id: 'user1', role: 'user' });
 
+// Booking route validation tests
 describe('Booking Routes', () => {
   describe('POST /api/bookings – validation', () => {
     it('should return 422 when lotId is missing', async () => {
