@@ -46,3 +46,4 @@ module.exports = router;
 // 401 returned for missing token
 // negative slot count guard added
 // X-Total-Count header added
+// 404 returned when booking not found
