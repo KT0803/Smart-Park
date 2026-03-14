@@ -38,3 +38,4 @@ describe('JWT Utilities', () => {
 // snapshot test for ParkingLotCard
 // axios mocked in frontend tests
 // Jest coverage thresholds configured
+// booking status transition tests
