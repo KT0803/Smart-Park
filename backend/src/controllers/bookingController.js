@@ -135,6 +135,7 @@ const getLotBookings = async (req, res, next) => {
   }
 };
 
+// Fixed: missing await on booking.save() in cancelBooking discovered by tests
 // Added: pagination support in getMyBookings
 // Refactored: claimSlot() and releaseSlot() extracted as internal service functions
 // Fixed: availableSlots $inc now correctly called inside claimSlot()
