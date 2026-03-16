@@ -31,3 +31,4 @@ router.delete('/:id', protect, authorize('admin'), deleteLot);
 module.exports = router;
 // route handlers documented
 // slot availability check refactored
+// driver assignment query simplified
