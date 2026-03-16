@@ -5,6 +5,7 @@ process.env.JWT_REFRESH_SECRET = 'test_refresh_secret';
 process.env.JWT_EXPIRES_IN = '15m';
 process.env.JWT_REFRESH_EXPIRES_IN = '7d';
 
+// Expanded: added cross-secret verification test
 // JWT utility test suite
 describe('JWT Utilities', () => {
   const payload = { id: 'user123', role: 'user' };
