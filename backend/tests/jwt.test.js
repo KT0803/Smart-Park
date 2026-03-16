@@ -39,3 +39,4 @@ describe('JWT Utilities', () => {
 // axios mocked in frontend tests
 // Jest coverage thresholds configured
 // booking status transition tests
+// driver assignment integration test
