@@ -47,3 +47,4 @@ module.exports = router;
 // negative slot count guard added
 // X-Total-Count header added
 // 404 returned when booking not found
+// validation error returns 422
