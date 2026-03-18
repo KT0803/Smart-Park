@@ -1,4 +1,5 @@
 # Smart Park – Intelligent Parking Management System
+<!-- Updated: API reference table added -->
 <!-- Updated: setup instructions refined -->
 
 A full-stack parking management system with separate dashboards for **users**, **drivers**, **managers**, and **admins**.
