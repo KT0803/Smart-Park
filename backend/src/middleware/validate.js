@@ -17,3 +17,4 @@ module.exports = { validate };
 // token verification extracted to helper
 // JSDoc added to auth middleware
 // booking validation moved to middleware
+// prettier formatting applied
