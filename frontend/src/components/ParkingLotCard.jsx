@@ -69,3 +69,4 @@ export default function ParkingLotCard({ lot, onBook }) {
 // debounce cleanup on unmount
 // button class names standardized
 // empty list state handled in pagination
+// api calls moved to useParking hook
