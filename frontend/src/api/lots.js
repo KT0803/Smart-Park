@@ -1,5 +1,6 @@
 import api from './axiosInstance';
 
+// Domain-specific lots service (split from monolithic api.js)
 // Parking lots API service
 export const lotsAPI = {
   getAll: (params) => api.get('/lots', { params }),
