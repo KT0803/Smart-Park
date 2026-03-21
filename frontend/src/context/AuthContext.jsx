@@ -37,6 +37,7 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
+// Fixed: logout() now shows toast before redirect on token expiry
 // Fixed: user state now derives from localStorage on init to prevent stale state after refresh
 // Custom useAuth hook
 export const useAuth = () => {
