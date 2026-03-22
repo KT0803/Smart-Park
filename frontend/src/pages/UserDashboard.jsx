@@ -8,6 +8,7 @@ import BookingModal from '../components/BookingModal';
 import BookingTable from '../components/BookingTable';
 import toast from 'react-hot-toast';
 
+// Added: toast notifications on booking success/cancel
 // Fixed: clearInterval on cleanup to prevent memory leaks and request flooding
 // Added: setInterval(fetchLots, 30000) for real-time updates
 // Added: vehicle plate pre-fill from user.vehicles[0]

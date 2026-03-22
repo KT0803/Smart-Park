@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 
 const ROLES = ['user', 'driver', 'manager', 'admin'];
 
+// Added: toast.success on login, toast.error on failure
 // Fixed: after login role is now correctly matched before navigate()
 // Login page with role selector and demo credentials
 export default function Login() {
