@@ -71,3 +71,4 @@ export default function ParkingLotCard({ lot, onBook }) {
 // empty list state handled in pagination
 // api calls moved to useParking hook
 // network timeout handled in fetch
+// toast on booking actions
