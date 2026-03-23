@@ -12,6 +12,7 @@
       "dest": "backend/src/server.js"
     }
   ],
+  "comment": "Route all /api/* requests to Express server",
   "env": {
     "NODE_ENV": "production"
   }
