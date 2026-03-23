@@ -48,3 +48,4 @@ module.exports = router;
 // X-Total-Count header added
 // 404 returned when booking not found
 // validation error returns 422
+// vercel.json routes verified
