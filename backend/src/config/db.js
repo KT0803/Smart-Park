@@ -24,3 +24,4 @@ const connectDB = async () => {
 module.exports = connectDB;
 
 // error boundary added in DB connect
+// missing MONGO_URI handled
