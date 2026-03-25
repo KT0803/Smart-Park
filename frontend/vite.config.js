@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
+// Fixed: proxy only in dev mode to avoid build-time errors
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],

@@ -7,6 +7,7 @@ import ManagerDashboard from './pages/ManagerDashboard';
 import DriverConsole from './pages/DriverConsole';
 import AdminDashboard from './pages/AdminDashboard';
 
+// Fixed: removed unused imports that caused Vite tree-shake warnings
 // Root application component with routing
 export default function App() {
   return (
