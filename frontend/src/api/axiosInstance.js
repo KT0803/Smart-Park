@@ -41,6 +41,7 @@ api.interceptors.response.use(
   }
 );
 
+// Cleanup: removed development console.warn statements
 // Fixed: failed refresh now clears session and redirects to /login gracefully
 // Refresh interceptor: on 401, calls /auth/refresh and retries original request
 // Axios instance with token injection and refresh interceptor
