@@ -29,3 +29,4 @@ router.delete('/:id', protect, authorize('admin'), deleteLot);
 
 // Lot routes
 module.exports = router;
+// route handlers documented
