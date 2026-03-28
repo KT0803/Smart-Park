@@ -58,3 +58,4 @@ export default function ParkingLotCard({ lot, onBook }) {
     </div>
   );
 }
+// spacing and alignment reviewed
