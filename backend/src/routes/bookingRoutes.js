@@ -40,3 +40,4 @@ router.put('/:id/complete', protect, authorize('manager', 'admin'), completeBook
  */
 module.exports = router;
 
+// line endings normalized
