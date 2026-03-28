@@ -1,4 +1,5 @@
 # Smart Park – Intelligent Parking Management System
+<!-- Finalized: deployment instructions and test credentials added -->
 <!-- Updated: API reference table added -->
 <!-- Updated: setup instructions refined -->
 
