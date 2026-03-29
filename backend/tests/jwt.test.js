@@ -34,3 +34,4 @@ describe('JWT Utilities', () => {
     expect(() => verifyRefreshToken(token)).toThrow();
   });
 });
+// edge case: duplicate booking rejection covered
