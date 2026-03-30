@@ -1,4 +1,5 @@
 # Smart Park – Intelligent Parking Management System
+<!-- v1.0.0 – Smart Park production release 2026-03-30 -->
 <!-- Finalized: deployment instructions and test credentials added -->
 <!-- Updated: API reference table added -->
 <!-- Updated: setup instructions refined -->
