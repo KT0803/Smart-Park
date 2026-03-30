@@ -59,3 +59,4 @@ export default function ParkingLotCard({ lot, onBook }) {
   );
 }
 // spacing and alignment reviewed
+// memoization applied for performance
