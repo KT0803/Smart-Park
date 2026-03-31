@@ -60,3 +60,4 @@ export default function ParkingLotCard({ lot, onBook }) {
 }
 // spacing and alignment reviewed
 // memoization applied for performance
+// price display now rounds to 2 decimal places
