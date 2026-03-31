@@ -80,7 +80,7 @@ const getMyBookings = async (req, res, next) => {
 // @route  PUT /api/bookings/:id/cancel
 const cancelBooking = async (req, res, next) => {
   try {
-    const booking = await Booking.findById(req.params.id);
+    const booking = await Booking.findById(req.params.id).populate('lotId', 'pricePerHour');
     if (!booking) return sendError(res, 'Booking not found', 404);
     if (booking.userId.toString() !== req.user._id.toString() && req.user.role === 'user') {
       return sendError(res, 'Not authorized', 403);
@@ -89,15 +89,32 @@ const cancelBooking = async (req, res, next) => {
       return sendError(res, 'Cannot cancel a completed or already cancelled booking', 400);
     }
 
-    booking.status = 'cancelled';
-    await booking.save();
-    await releaseSlot(booking.slotId, booking.lotId);
+    // ⏱️ 1-minute free cancellation window
+    const CANCEL_WINDOW_MS = 60 * 1000;
+    const elapsed = Date.now() - new Date(booking.createdAt).getTime();
+    const withinWindow = elapsed <= CANCEL_WINDOW_MS;
 
-    return sendSuccess(res, booking, 'Booking cancelled');
+    booking.status = 'cancelled';
+    booking.checkOut = new Date();
+
+    if (!withinWindow) {
+      // Base charge applies — minimum 1 hour rate
+      booking.totalAmount = booking.lotId?.pricePerHour || 0;
+    }
+
+    await booking.save();
+    await releaseSlot(booking.slotId, booking.lotId._id || booking.lotId);
+
+    const msg = withinWindow
+      ? 'Booking cancelled successfully (no charge)'
+      : `Booking cancelled. Base charge of ₹${booking.totalAmount} applied (1 hour minimum).`;
+
+    return sendSuccess(res, booking, msg);
   } catch (err) {
     next(err);
   }
 };
+
 
 // @desc   Complete a booking (checkout)
 // @route  PUT /api/bookings/:id/complete

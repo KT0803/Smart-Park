@@ -23,7 +23,11 @@ router.post(
 router.get('/my', protect, getMyBookings);
 router.get('/lot/:lotId', protect, authorize('manager', 'admin'), getLotBookings);
 router.put('/:id/cancel', protect, cancelBooking);
-router.put('/:id/complete', protect, authorize('manager', 'admin', 'driver'), completeBooking);
+router.put('/:id/complete', protect, authorize('manager', 'admin'), completeBooking);
+
+// Booking routes
+module.exports = router;
+
 
 // Booking routes
 module.exports = router;

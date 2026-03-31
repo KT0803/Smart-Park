@@ -1,12 +1,17 @@
+const { MongoMemoryServer } = require('mongodb-memory-server');
 const mongoose = require('mongoose');
 
-// Establishes MongoDB connection on server startup
+let mongod;
+
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI);
-    console.log(`MongoDB connected: ${conn.connection.host}`);
+    console.log('🧠 Starting in-memory MongoDB...');
+    mongod = await MongoMemoryServer.create();
+    const uri = mongod.getUri();
+    await mongoose.connect(uri);
+    console.log('✅ In-memory MongoDB connected');
   } catch (error) {
-    console.error(`MongoDB connection error: ${error.message}`);
+    console.error(`❌ MongoDB connection error: ${error.message}`);
     process.exit(1);
   }
 };

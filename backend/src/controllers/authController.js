@@ -6,12 +6,17 @@ const { sendSuccess, sendError } = require('../utils/response');
 // @route   POST /api/auth/register
 const register = async (req, res, next) => {
   try {
-    const { name, email, password, role, phone } = req.body;
-    const exists = await User.findOne({ email });
-    if (exists) return sendError(res, 'Email already registered', 409);
+    const { name, password, role, phone } = req.body;
+    const email = req.body.email?.toLowerCase().trim();
 
-    const isApproved = role !== 'driver'; // drivers need admin approval
-    const user = await User.create({ name, email, password, role, phone, isApproved });
+    if (!email) return sendError(res, 'Email is required', 400);
+
+    const exists = await User.findOne({ email });
+    if (exists) return sendError(res, 'An account with this email already exists', 409);
+
+    // Only allow self-registration as 'user'
+    const safeRole = role === 'user' ? 'user' : 'user';
+    const user = await User.create({ name, email, password, role: safeRole, phone, isApproved: true });
 
     const token = generateToken({ id: user._id, role: user.role });
     const refreshToken = generateRefreshToken({ id: user._id, role: user.role });
@@ -26,7 +31,9 @@ const register = async (req, res, next) => {
 // @route   POST /api/auth/login
 const login = async (req, res, next) => {
   try {
-    const { email, password, role } = req.body;
+    const { password, role } = req.body;
+    const email = req.body.email?.toLowerCase().trim();
+
     const user = await User.findOne({ email });
     if (!user) return sendError(res, 'Invalid credentials', 401);
 

@@ -7,7 +7,7 @@ const { sendSuccess, sendError } = require('../utils/response');
 const getLots = async (req, res, next) => {
   try {
     const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
+    const limit = parseInt(req.query.limit) || 100;
     const skip = (page - 1) * limit;
 
     const lots = await ParkingLot.find({ isActive: true }).skip(skip).limit(limit).populate('managerId', 'name email');
