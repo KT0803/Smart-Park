@@ -27,6 +27,16 @@ router.post('/clear-history', protect, clearBookingHistory);
 router.put('/:id/cancel', protect, cancelBooking);
 router.put('/:id/complete', protect, authorize('manager', 'admin'), completeBooking);
 
-// Booking routes
+/**
+ * Booking Routes
+ *
+ * This module defines the API endpoints for managing parking bookings:
+ * - POST /: Create a new booking (requires 'user' role)
+ * - GET /my: Retrieve all bookings for the currently authenticated user
+ * - GET /lot/:lotId: Retrieve all bookings for a specific lot (managers/admins only)
+ * - DELETE/POST /clear-history: Clear the user's non-active booking history
+ * - PUT /:id/cancel: Cancel an active booking
+ * - PUT /:id/complete: Mark a booking as completed (managers/admins only)
+ */
 module.exports = router;
 
