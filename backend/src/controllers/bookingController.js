@@ -91,15 +91,17 @@ const cancelBooking = async (req, res, next) => {
 
     // ⏱️ 1-minute free cancellation window
     const CANCEL_WINDOW_MS = 60 * 1000;
-    const elapsed = Date.now() - new Date(booking.createdAt).getTime();
+    const checkInTime = booking.checkIn ? new Date(booking.checkIn).getTime() : new Date(booking.createdAt).getTime();
+    const elapsed = Date.now() - checkInTime;
     const withinWindow = elapsed <= CANCEL_WINDOW_MS;
 
     booking.status = 'cancelled';
     booking.checkOut = new Date();
 
     if (!withinWindow) {
-      // Base charge applies — minimum 1 hour rate
-      booking.totalAmount = booking.lotId?.pricePerHour || 0;
+      // Calculate actual hours elapsed (minimum 1 hour)
+      const hours = Math.max(1, Math.ceil((booking.checkOut.getTime() - checkInTime) / 3600000));
+      booking.totalAmount = hours * (booking.lotId?.pricePerHour || 0);
     }
 
     await booking.save();
@@ -107,7 +109,7 @@ const cancelBooking = async (req, res, next) => {
 
     const msg = withinWindow
       ? 'Booking cancelled successfully (no charge)'
-      : `Booking cancelled. Base charge of ₹${booking.totalAmount} applied (1 hour minimum).`;
+      : `Booking cancelled. Charge of ₹${booking.totalAmount} applied.`;
 
     return sendSuccess(res, booking, msg);
   } catch (err) {

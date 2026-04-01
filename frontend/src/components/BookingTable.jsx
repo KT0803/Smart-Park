@@ -33,7 +33,10 @@ function useCancelCountdown(createdAt) {
 function CancelCell({ booking, onCancel }) {
   const secondsLeft = useCancelCountdown(booking.createdAt);
   const isFree = secondsLeft > 0;
-  const charge = booking.lotId?.pricePerHour;
+  const checkInTime = booking.checkIn ? new Date(booking.checkIn).getTime() : new Date(booking.createdAt).getTime();
+  const elapsedMs = Date.now() - checkInTime;
+  const hours = Math.max(1, Math.ceil(elapsedMs / 3600000));
+  const charge = (booking.lotId?.pricePerHour || 0) * hours;
 
   if (!['pending', 'active'].includes(booking.status)) return null;
 
@@ -57,8 +60,8 @@ function CancelCell({ booking, onCancel }) {
           >
             Cancel
           </button>
-          {charge && (
-            <span className="text-xs text-amber-500">₹{charge} base charge</span>
+          {charge > 0 && (
+            <span className="text-xs text-amber-500">₹{charge} charge</span>
           )}
         </>
       )}
@@ -83,7 +86,7 @@ export default function BookingTable({ bookings, onCancel }) {
         <span className="text-amber-400 text-base mt-0.5">⚠️</span>
         <p className="text-amber-300">
           <span className="font-semibold">Cancellation Policy:</span> Cancel within <strong>1 minute</strong> for free.
-          After that, you can still cancel but a <strong>base charge (1 hr rate)</strong> will apply.
+          After that, you can still cancel but a <strong>charge based on elapsed hours (1 hr minimum)</strong> will apply.
         </p>
       </div>
 
