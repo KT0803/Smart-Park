@@ -154,6 +154,20 @@ const getLotBookings = async (req, res, next) => {
   }
 };
 
+// @desc   Delete all completed/cancelled bookings for current user
+// @route  DELETE /api/bookings/clear-history
+const clearBookingHistory = async (req, res, next) => {
+  try {
+    const result = await Booking.deleteMany({
+      userId: req.user._id,
+      status: { $in: ['completed', 'cancelled'] },
+    });
+    return sendSuccess(res, { deletedCount: result.deletedCount }, `${result.deletedCount} booking(s) cleared`);
+  } catch (err) {
+    next(err);
+  }
+};
+
 // Fixed: missing await on booking.save() in cancelBooking discovered by tests
 // Added: pagination support in getMyBookings
 // Refactored: claimSlot() and releaseSlot() extracted as internal service functions
@@ -161,4 +175,4 @@ const getLotBookings = async (req, res, next) => {
 // Fixed: duplicate active booking check added before slot claim
 // Added: getMyBookings and cancelBooking
 // Booking controller
-module.exports = { createBooking, getMyBookings, cancelBooking, completeBooking, getLotBookings };
+module.exports = { createBooking, getMyBookings, cancelBooking, completeBooking, getLotBookings, clearBookingHistory };

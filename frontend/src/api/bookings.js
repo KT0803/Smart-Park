@@ -7,4 +7,5 @@ export const bookingsAPI = {
   cancel:         (id)   => api.put(`/bookings/${id}/cancel`),
   complete:       (id)   => api.put(`/bookings/${id}/complete`),
   getLotBookings: (lotId) => api.get(`/bookings/lot/${lotId}`),
+  clearHistory:   ()     => api.delete('/bookings/clear-history'),
 };

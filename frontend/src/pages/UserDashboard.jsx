@@ -77,14 +77,16 @@ export default function UserDashboard() {
   };
 
   const handleClearAll = async () => {
-    const cancellable = myBookings.filter(b => ['active', 'pending'].includes(b.status));
-    if (cancellable.length === 0) return toast('No active bookings to cancel');
-    let count = 0;
-    for (const b of cancellable) {
-      try { await bookingsAPI.cancel(b._id); count++; } catch {}
+    const clearable = myBookings.filter(b => ['completed', 'cancelled'].includes(b.status));
+    if (clearable.length === 0) return toast('No completed or cancelled bookings to clear');
+    try {
+      const res = await bookingsAPI.clearHistory();
+      const count = res.data.data?.deletedCount ?? clearable.length;
+      toast.success(`${count} booking${count !== 1 ? 's' : ''} cleared`);
+      fetchBookings();
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Failed to clear history');
     }
-    toast.success(`${count} booking${count !== 1 ? 's' : ''} cancelled`);
-    fetchBookings(); fetchLots();
   };
 
   // Lot count per state

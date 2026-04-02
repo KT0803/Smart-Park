@@ -108,10 +108,10 @@ export default function BookingTable({ bookings, onCancel, onClearAll }) {
             Clear Search
           </button>
         )}
-        {bookings.length > 0 && onClearAll && (
+        {bookings.some(b => ['completed', 'cancelled'].includes(b.status)) && onClearAll && (
           <button
             onClick={() => {
-              if (window.confirm('Are you sure you want to cancel ALL active/pending bookings?')) {
+              if (window.confirm('Clear all completed and cancelled bookings from your history? Active bookings will not be affected.')) {
                 onClearAll();
               }
             }}
