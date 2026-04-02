@@ -15,7 +15,7 @@ export default function ParkingLotCard({ lot, onBook }) {
       {/* Header */}
       <div>
         <h3 className="text-lg font-semibold text-slate-900 dark:text-white">{lot.name}</h3>
-        <p className="text-sm text-slate-500 dark:text-gray-400 mt-0.5">📍 {lot.location}</p>
+        <p className="text-sm text-slate-500 dark:text-gray-400 mt-0.5">{lot.location}</p>
       </div>
 
       {/* Occupancy bar */}

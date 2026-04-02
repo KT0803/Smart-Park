@@ -81,12 +81,12 @@ export default function AdminDashboard() {
   };
 
   const STAT_CARDS = analytics ? [
-    { label: 'Total Users',     value: analytics.totalUsers,     icon: '👤', color: 'from-blue-600 to-blue-800' },
-    { label: 'Parking Lots',    value: analytics.totalLots,      icon: '🅿️', color: 'from-emerald-600 to-emerald-800' },
-    { label: 'Active Bookings', value: analytics.activeBookings, icon: '📋', color: 'from-purple-600 to-purple-800' },
-    { label: 'Total Revenue',   value: `₹${(analytics.totalRevenue || 0).toLocaleString()}`, icon: '💰', color: 'from-amber-600 to-amber-800' },
-    { label: 'Total Bookings',  value: analytics.totalBookings,  icon: '🗂️', color: 'from-rose-600 to-rose-800' },
-    { label: 'Managers',        value: analytics.totalManagers,  icon: '🏢', color: 'from-indigo-600 to-indigo-800' },
+    { label: 'Total Users',     value: analytics.totalUsers,     color: 'from-blue-600 to-blue-800' },
+    { label: 'Parking Lots',    value: analytics.totalLots,      color: 'from-emerald-600 to-emerald-800' },
+    { label: 'Active Bookings', value: analytics.activeBookings, color: 'from-purple-600 to-purple-800' },
+    { label: 'Total Revenue',   value: `₹${(analytics.totalRevenue || 0).toLocaleString()}`, color: 'from-amber-600 to-amber-800' },
+    { label: 'Total Bookings',  value: analytics.totalBookings,  color: 'from-rose-600 to-rose-800' },
+    { label: 'Managers',        value: analytics.totalManagers,  color: 'from-indigo-600 to-indigo-800' },
   ] : [];
 
   const totalStateRevenue = stateRevenue.reduce((s, d) => s + d.revenue, 0);
@@ -160,7 +160,7 @@ export default function AdminDashboard() {
 
         {/* Tabs */}
         <div className="flex gap-1 p-1 bg-gray-900 rounded-xl w-fit mb-8">
-          {[['overview', '📊 Overview'], ['earnings', '💰 State Earnings'], ['users', '👥 Users']].map(([key, label]) => (
+          {[['overview', 'Overview'], ['earnings', 'State Earnings'], ['users', 'Users']].map(([key, label]) => (
             <button key={key} onClick={() => setTab(key)}
               className={`px-5 py-2 rounded-lg text-sm font-medium transition-all ${tab === key ? 'bg-blue-600 text-white shadow' : 'text-gray-400 hover:text-gray-200'}`}>
               {label}
@@ -175,9 +175,8 @@ export default function AdminDashboard() {
 
         ) : tab === 'overview' ? (
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-            {STAT_CARDS.map(({ label, value, icon, color }) => (
+            {STAT_CARDS.map(({ label, value, color }) => (
               <div key={label} className={`rounded-2xl p-6 bg-gradient-to-br ${color} shadow-lg`}>
-                <p className="text-3xl mb-1">{icon}</p>
                 <p className="text-2xl font-bold text-white">{value}</p>
                 <p className="text-sm text-white/70 mt-1">{label}</p>
               </div>
@@ -192,12 +191,10 @@ export default function AdminDashboard() {
                 <p className="text-amber-200 text-sm font-medium">Total Revenue (All States)</p>
                 <p className="text-3xl font-bold text-white mt-1">₹{totalStateRevenue.toLocaleString()}</p>
               </div>
-              <span className="text-5xl">💰</span>
             </div>
 
             {stateRevenue.length === 0 ? (
               <div className="card text-center py-16 text-gray-500">
-                <p className="text-4xl mb-3">📊</p>
                 <p>No completed bookings yet to show state earnings.</p>
                 <p className="text-sm mt-1">Complete a booking to see revenue here.</p>
               </div>

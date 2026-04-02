@@ -15,10 +15,10 @@ export default function Navbar() {
   };
 
   const roleLabel = {
-    user: '👤 User',
-    manager: '🏢 Manager',
-    driver: '🚗 Driver',
-    admin: '⚙️ Admin',
+    user: 'User',
+    manager: 'Manager',
+    driver: 'Driver',
+    admin: 'Admin',
   };
 
   return (
@@ -49,11 +49,12 @@ export default function Navbar() {
           <button
             onClick={toggleTheme}
             title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-            className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-200
-                       hover:scale-105 active:scale-95
-                       bg-slate-100 dark:bg-gray-800 border border-slate-200 dark:border-gray-700"
+            className="rounded-lg flex items-center justify-center px-3 py-1.5 transition-all duration-200
+                       hover:scale-105 active:scale-95 text-xs font-medium
+                       bg-slate-100 dark:bg-gray-800 border border-slate-200 dark:border-gray-700
+                       text-slate-600 dark:text-gray-300"
           >
-            <span className="text-base">{theme === 'dark' ? '☀️' : '🌙'}</span>
+            {theme === 'dark' ? 'Light Theme' : 'Dark Theme'}
           </button>
 
           {/* Logout */}

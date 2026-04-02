@@ -61,7 +61,7 @@ export default function DriverConsole() {
                 <div className="flex items-start justify-between">
                   <div>
                     <p className="font-semibold text-white">{a.userId?.name}</p>
-                    <p className="text-sm text-gray-400 mt-0.5">📍 {a.lotId?.name} · Slot {a.slotId?.slotNumber} · Floor {a.slotId?.floor}</p>
+                    <p className="text-sm text-gray-400 mt-0.5">{a.lotId?.name} · Slot {a.slotId?.slotNumber} · Floor {a.slotId?.floor}</p>
                     <p className="text-xs text-gray-500 mt-0.5">Vehicle: {a.vehiclePlate}</p>
                     <p className="text-xs text-gray-500">Check-in: {new Date(a.checkIn).toLocaleString()}</p>
                   </div>

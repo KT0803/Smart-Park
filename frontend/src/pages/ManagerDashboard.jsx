@@ -73,10 +73,10 @@ export default function ManagerDashboard() {
   };
 
   const STAT_CARDS = analytics ? [
-    { label: 'Parking Lots', value: analytics.totalLots, icon: '🅿️', color: 'from-blue-600 to-blue-800' },
-    { label: 'Active Bookings', value: analytics.activeBookings, icon: '📋', color: 'from-emerald-600 to-emerald-800' },
-    { label: 'Total Bookings', value: analytics.totalBookings, icon: '🗂️', color: 'from-purple-600 to-purple-800' },
-    { label: 'Revenue', value: `₹${(analytics.totalRevenue || 0).toLocaleString()}`, icon: '💰', color: 'from-amber-600 to-amber-800' },
+    { label: 'Parking Lots', value: analytics.totalLots, color: 'from-blue-600 to-blue-800' },
+    { label: 'Active Bookings', value: analytics.activeBookings, color: 'from-emerald-600 to-emerald-800' },
+    { label: 'Total Bookings', value: analytics.totalBookings, color: 'from-purple-600 to-purple-800' },
+    { label: 'Revenue', value: `₹${(analytics.totalRevenue || 0).toLocaleString()}`, color: 'from-amber-600 to-amber-800' },
   ] : [];
 
   return (
@@ -137,7 +137,7 @@ export default function ManagerDashboard() {
 
         {/* Tabs */}
         <div className="flex gap-1 p-1 bg-gray-900 rounded-xl w-fit mb-8">
-          {[['overview', '📊 Overview'], ['lots', '🅿️ My Lots'], ['bookings', '📋 Bookings']].map(([key, label]) => (
+          {[['overview', 'Overview'], ['lots', 'My Lots'], ['bookings', 'Bookings']].map(([key, label]) => (
             <button key={key} onClick={() => setTab(key)}
               className={`px-5 py-2 rounded-lg text-sm font-medium transition-all ${tab === key ? 'bg-blue-600 text-white' : 'text-gray-400 hover:text-gray-200'}`}>
               {label}
@@ -152,9 +152,8 @@ export default function ManagerDashboard() {
         ) : tab === 'overview' ? (
           <div className="space-y-6">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              {STAT_CARDS.map(({ label, value, icon, color }) => (
+              {STAT_CARDS.map(({ label, value, color }) => (
                 <div key={label} className={`rounded-2xl p-6 bg-gradient-to-br ${color} shadow-lg`}>
-                  <p className="text-3xl mb-1">{icon}</p>
                   <p className="text-2xl font-bold text-white">{value}</p>
                   <p className="text-sm text-white/70 mt-1">{label}</p>
                 </div>
@@ -191,7 +190,7 @@ export default function ManagerDashboard() {
             {lots.map(lot => (
               <div key={lot._id} className="card">
                 <h3 className="font-semibold text-white">{lot.name}</h3>
-                <p className="text-xs text-gray-400 mt-1">📍 {lot.location}</p>
+                <p className="text-xs text-gray-400 mt-1">{lot.location}</p>
                 <div className="flex gap-2 mt-4 text-sm">
                   <span className="badge-available">{lot.availableSlots} free</span>
                   <span className="badge-occupied">{lot.totalSlots - lot.availableSlots} occupied</span>
@@ -242,7 +241,6 @@ export default function ManagerDashboard() {
               </>
             ) : (
               <div className="card flex items-center justify-center h-64 text-gray-500 flex-col gap-3">
-                <p className="text-4xl">🅿️</p>
                 <p>Select a lot from the "My Lots" tab to view its bookings</p>
               </div>
             )}
