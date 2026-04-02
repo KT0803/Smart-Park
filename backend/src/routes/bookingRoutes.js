@@ -22,7 +22,7 @@ router.post(
 
 router.get('/my', protect, getMyBookings);
 router.get('/lot/:lotId', protect, authorize('manager', 'admin'), getLotBookings);
-router.post('/clear-history', protect, clearBookingHistory);
+router.delete('/clear-history', protect, clearBookingHistory);
 router.put('/:id/cancel', protect, cancelBooking);
 router.put('/:id/complete', protect, authorize('manager', 'admin'), completeBooking);
 
