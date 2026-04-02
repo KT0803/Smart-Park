@@ -144,10 +144,9 @@ export default function UserDashboard() {
             {/* Search + Sort bar */}
             <div className="flex flex-col sm:flex-row gap-3 mb-6">
               <div className="relative flex-1">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-gray-400 text-sm">Search</span>
                 <input type="text" placeholder="Search by name or location…"
                   value={search} onChange={e => setSearch(e.target.value)}
-                  className="input w-full pl-9" />
+                  className="input w-full" />
               </div>
               <input type="number" placeholder="Max ₹/hr"
                 value={maxPrice} onChange={e => setMaxPrice(e.target.value)}
