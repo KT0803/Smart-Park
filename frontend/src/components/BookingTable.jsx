@@ -53,7 +53,7 @@ function CancelCell({ booking, onCancel }) {
           >
             ✕ Cancel (Free)
           </button>
-          <span className="text-xs text-emerald-600 dark:text-emerald-400 font-mono">⏱ {secondsLeft}s left</span>
+          <span className="text-xs text-emerald-600 dark:text-emerald-400 font-mono">{secondsLeft}s left (free cancel)</span>
         </>
       ) : (
         <>
@@ -94,7 +94,7 @@ export default function BookingTable({ bookings, onCancel, onClearAll }) {
       {/* Search + Clear All toolbar */}
       <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
         <div className="relative flex-1">
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-slate-400 dark:text-gray-500">🔍</span>
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-slate-400 dark:text-gray-500">Search</span>
           <input
             type="text"
             placeholder="Search by lot, slot, plate or status…"
@@ -120,26 +120,23 @@ export default function BookingTable({ bookings, onCancel, onClearAll }) {
                        border border-red-200 dark:border-red-500/30
                        hover:bg-red-100 dark:hover:bg-red-500/20 transition-all duration-150 active:scale-95"
           >
-            🗑 Clear All
+            Clear All
           </button>
         )}
       </div>
 
       {bookings.length === 0 ? (
         <div className="card text-center py-16 text-slate-400 dark:text-gray-500">
-          <p className="text-4xl mb-3">🅿️</p>
           <p>No bookings yet. Book your first spot above!</p>
         </div>
       ) : filtered.length === 0 ? (
         <div className="card text-center py-12 text-slate-400 dark:text-gray-500">
-          <p className="text-2xl mb-2">🔍</p>
           <p>No bookings match "<strong>{search}</strong>"</p>
         </div>
       ) : (
         <div className="card overflow-x-auto">
           {/* Cancellation policy banner */}
           <div className="flex items-start gap-2 bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/30 rounded-xl px-4 py-3 mb-5 text-sm">
-            <span className="text-amber-500 text-base mt-0.5">⚠️</span>
             <p className="text-amber-700 dark:text-amber-300">
               <span className="font-semibold">Cancellation Policy:</span> Cancel within <strong>1 minute</strong> for free.
               After that, you can still cancel but a <strong>charge based on elapsed hours (1 hr minimum)</strong> will apply.
