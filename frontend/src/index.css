@@ -4,64 +4,83 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Base ─────────────────────────────────────────────────────────────────── */
 @layer base {
-  * {
-    @apply box-border;
-  }
+  * { @apply box-border; }
+  html { transition: background-color 0.3s ease, color 0.3s ease; }
   body {
-    @apply bg-gray-950 text-gray-100 font-sans antialiased;
+    @apply bg-slate-100 text-slate-900 antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+  /* Dark mode: Tailwind 'dark' class on <html> activates this */
+  html.dark body {
+    @apply bg-gray-950 text-gray-100;
   }
 }
 
+/* ─── Component library ────────────────────────────────────────────────────── */
 @layer components {
+
+  /* Primary button — always blue */
   .btn-primary {
     @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-5 rounded-lg
-           transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+           transition-all duration-200 active:scale-95
+           disabled:opacity-50 disabled:cursor-not-allowed;
   }
+
+  /* Secondary button — adapts to theme */
   .btn-secondary {
-    @apply bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2.5 px-5 rounded-lg
-           transition-all duration-200 active:scale-95;
+    @apply font-semibold py-2.5 px-5 rounded-lg transition-all duration-200 active:scale-95
+           bg-slate-200 hover:bg-slate-300 text-slate-800 border border-slate-300
+           dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white dark:border-gray-600;
   }
+
+  /* Danger button */
   .btn-danger {
     @apply bg-red-600 hover:bg-red-700 text-white font-semibold py-2.5 px-5 rounded-lg
            transition-all duration-200 active:scale-95;
   }
+
+  /* Card panel */
   .card {
-    @apply bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-xl;
+    @apply bg-white border border-slate-200 rounded-2xl p-6 shadow-sm
+           dark:bg-gray-900 dark:border-gray-800 dark:shadow-xl;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
   }
+
+  /* Form input / select */
   .input {
-    @apply w-full bg-gray-800 border border-gray-700 text-gray-100 rounded-lg px-4 py-2.5
+    @apply w-full rounded-lg px-4 py-2.5 transition-all duration-200
            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
-           placeholder-gray-500 transition-all duration-200;
+           bg-slate-100 border border-slate-300 text-slate-900 placeholder-slate-400
+           dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500;
   }
-  .badge-available {
-    @apply bg-emerald-500/20 text-emerald-400 text-xs font-medium px-2.5 py-1 rounded-full;
+
+  /* Form label */
+  .label {
+    @apply block text-sm font-medium mb-1.5 text-slate-700 dark:text-gray-300;
   }
-  .badge-occupied {
-    @apply bg-red-500/20 text-red-400 text-xs font-medium px-2.5 py-1 rounded-full;
-  }
-  .badge-pending {
-    @apply bg-amber-500/20 text-amber-400 text-xs font-medium px-2.5 py-1 rounded-full;
-  }
-  .badge-active {
-    @apply bg-blue-500/20 text-blue-400 text-xs font-medium px-2.5 py-1 rounded-full;
-  }
-  .badge-completed {
-    @apply bg-gray-500/20 text-gray-400 text-xs font-medium px-2.5 py-1 rounded-full;
-  }
+
+  /* Status badges */
+  .badge-available { @apply bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 text-xs font-medium px-2.5 py-1 rounded-full; }
+  .badge-occupied  { @apply bg-red-500/15     text-red-700     dark:text-red-400     text-xs font-medium px-2.5 py-1 rounded-full; }
+  .badge-pending   { @apply bg-amber-500/15   text-amber-700   dark:text-amber-400   text-xs font-medium px-2.5 py-1 rounded-full; }
+  .badge-active    { @apply bg-blue-500/15    text-blue-700    dark:text-blue-400    text-xs font-medium px-2.5 py-1 rounded-full; }
+  .badge-completed { @apply bg-gray-500/15    text-gray-600    dark:text-gray-400    text-xs font-medium px-2.5 py-1 rounded-full; }
 }
 
-/* Scrollbar */
+/* ─── Scrollbar ────────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { @apply bg-gray-900; }
-::-webkit-scrollbar-thumb { @apply bg-gray-700 rounded-full; }
-::-webkit-scrollbar-thumb:hover { @apply bg-gray-600; }
+html:not(.dark) ::-webkit-scrollbar-track { background: #e2e8f0; }
+html:not(.dark) ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 9999px; }
+html:not(.dark) ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+html.dark ::-webkit-scrollbar-track { background: #111827; }
+html.dark ::-webkit-scrollbar-thumb { background: #374151; border-radius: 9999px; }
+html.dark ::-webkit-scrollbar-thumb:hover { background: #4b5563; }
 
-/* Refactored: moved ad-hoc styles into @layer components */
-/* Status indicators added for slot grid */
-/* Animate */
+/* ─── Animations ───────────────────────────────────────────────────────────── */
 @keyframes fadein {
   from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 .animate-fadein { animation: fadein 0.3s ease forwards; }

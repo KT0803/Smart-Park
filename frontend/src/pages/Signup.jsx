@@ -25,16 +25,16 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 flex items-center justify-center px-4">
-      <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
+    <div className="min-h-screen bg-slate-100 dark:bg-gray-950 flex items-center justify-center px-4 transition-colors duration-300">
+      <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-blue-600/10 dark:bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
       <div className="relative z-10 w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
           <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center font-bold text-white text-xl mx-auto mb-4 shadow-lg shadow-blue-600/30">
             SP
           </div>
-          <h1 className="text-2xl font-bold text-white">Create your account</h1>
-          <p className="text-gray-400 text-sm mt-1">Start parking smarter today</p>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Create your account</h1>
+          <p className="text-slate-500 dark:text-gray-400 text-sm mt-1">Start parking smarter today</p>
         </div>
 
         <div className="card">
@@ -65,14 +65,14 @@ export default function Signup() {
             </button>
           </form>
 
-          <p className="text-center text-sm text-gray-400 mt-6">
+          <p className="text-center text-sm text-slate-500 dark:text-gray-400 mt-6">
             Already have an account?{' '}
-            <Link to="/login" className="text-blue-400 hover:text-blue-300 transition-colors">Sign in</Link>
+            <Link to="/login" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">Sign in</Link>
           </p>
         </div>
 
         <p className="text-center mt-6">
-          <Link to="/" className="text-sm text-gray-500 hover:text-gray-400 transition-colors">← Back to home</Link>
+          <Link to="/" className="text-sm text-slate-400 dark:text-gray-500 hover:text-slate-600 dark:hover:text-gray-400 transition-colors">← Back to home</Link>
         </p>
       </div>
     </div>

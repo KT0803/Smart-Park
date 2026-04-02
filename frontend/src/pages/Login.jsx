@@ -29,8 +29,8 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-950 p-4">
-      <div className="absolute top-1/4 right-1/3 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
+    <div className="min-h-screen flex items-center justify-center bg-slate-100 dark:bg-gray-950 p-4 transition-colors duration-300">
+      <div className="absolute top-1/4 right-1/3 w-96 h-96 bg-blue-600/10 dark:bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
       <div className="relative z-10 w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
@@ -41,8 +41,8 @@ export default function Login() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M10 10V8.5A1.5 1.5 0 0111.5 7h.5a1.5 1.5 0 011.5 1.5V10"/>
             </svg>
           </div>
-          <h1 className="text-2xl font-bold text-white">Welcome back</h1>
-          <p className="text-gray-400 text-sm mt-1">Sign in to Smart Park</p>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Welcome back</h1>
+          <p className="text-slate-500 dark:text-gray-400 text-sm mt-1">Sign in to Smart Park</p>
         </div>
 
         <div className="card">
@@ -61,7 +61,7 @@ export default function Login() {
               <label className="label">Role</label>
               <select name="role" value={form.role} onChange={handleChange} className="input w-full">
                 {ROLES.map((r) => (
-                  <option key={r} value={r} className="bg-gray-800 capitalize">
+                  <option key={r} value={r} className="bg-slate-100 dark:bg-gray-800 capitalize">
                     {r.charAt(0).toUpperCase() + r.slice(1)}
                   </option>
                 ))}
@@ -72,14 +72,14 @@ export default function Login() {
             </button>
           </form>
 
-          <p className="text-center text-sm text-gray-400 mt-6">
+          <p className="text-center text-sm text-slate-500 dark:text-gray-400 mt-6">
             Don't have an account?{' '}
-            <Link to="/signup" className="text-blue-400 hover:text-blue-300 transition-colors">Create one</Link>
+            <Link to="/signup" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">Create one</Link>
           </p>
         </div>
 
         <p className="text-center mt-6">
-          <Link to="/" className="text-sm text-gray-500 hover:text-gray-400 transition-colors">← Back to home</Link>
+          <Link to="/" className="text-sm text-slate-400 dark:text-gray-500 hover:text-slate-600 dark:hover:text-gray-400 transition-colors">← Back to home</Link>
         </p>
       </div>
     </div>

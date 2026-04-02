@@ -76,6 +76,17 @@ export default function UserDashboard() {
     }
   };
 
+  const handleClearAll = async () => {
+    const cancellable = myBookings.filter(b => ['active', 'pending'].includes(b.status));
+    if (cancellable.length === 0) return toast('No active bookings to cancel');
+    let count = 0;
+    for (const b of cancellable) {
+      try { await bookingsAPI.cancel(b._id); count++; } catch {}
+    }
+    toast.success(`${count} booking${count !== 1 ? 's' : ''} cancelled`);
+    fetchBookings(); fetchLots();
+  };
+
   // Lot count per state
   const stateCounts = STATES.reduce((acc, s) => {
     acc[s] = s === 'All' ? allLots.length : allLots.filter(l => l.state === s).length;
@@ -83,21 +94,23 @@ export default function UserDashboard() {
   }, {});
 
   return (
-    <div className="min-h-screen bg-gray-950">
+    <div className="min-h-screen bg-slate-100 dark:bg-gray-950 transition-colors duration-300">
       <Navbar />
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-2xl font-bold text-white">Welcome, {user?.name} 👋</h1>
-          <p className="text-gray-400 mt-1">Find and book your parking spot</p>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Welcome, {user?.name} 👋</h1>
+          <p className="text-slate-500 dark:text-gray-400 mt-1">Find and book your parking spot</p>
         </div>
 
         {/* Main Tabs */}
-        <div className="flex gap-1 p-1 bg-gray-900 rounded-xl w-fit mb-8">
+        <div className="flex gap-1 p-1 bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-800 rounded-xl w-fit mb-8">
           {[['lots', '🅿️ Parking Lots'], ['myBookings', '📋 My Bookings']].map(([t, label]) => (
             <button key={t} onClick={() => setTab(t)}
               className={`px-5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                tab === t ? 'bg-blue-600 text-white shadow' : 'text-gray-400 hover:text-gray-200'
+                tab === t
+                  ? 'bg-blue-600 text-white shadow'
+                  : 'text-slate-500 dark:text-gray-400 hover:text-slate-800 dark:hover:text-gray-200'
               }`}>
               {label}
             </button>
@@ -117,12 +130,14 @@ export default function UserDashboard() {
                   className={`flex-shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 ${
                     activeState === s
                       ? 'bg-blue-600 border-blue-600 text-white shadow-lg shadow-blue-600/25'
-                      : 'bg-gray-900 border-gray-800 text-gray-400 hover:border-gray-600 hover:text-gray-200'
+                      : 'bg-white dark:bg-gray-900 border-slate-200 dark:border-gray-800 text-slate-500 dark:text-gray-400 hover:border-slate-400 dark:hover:border-gray-600 hover:text-slate-800 dark:hover:text-gray-200'
                   }`}>
                   {s !== 'All' && <span>{STATE_EMOJI[s]}</span>}
                   <span>{s}</span>
                   <span className={`text-xs px-1.5 py-0.5 rounded-full ${
-                    activeState === s ? 'bg-white/20 text-white' : 'bg-gray-800 text-gray-500'
+                    activeState === s
+                      ? 'bg-white/20 text-white'
+                      : 'bg-slate-100 dark:bg-gray-800 text-slate-400 dark:text-gray-500'
                   }`}>
                     {stateCounts[s]}
                   </span>
@@ -133,7 +148,7 @@ export default function UserDashboard() {
             {/* Search + Sort bar */}
             <div className="flex flex-col sm:flex-row gap-3 mb-6">
               <div className="relative flex-1">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">🔍</span>
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-gray-400 text-sm">🔍</span>
                 <input type="text" placeholder="Search by name or location…"
                   value={search} onChange={e => setSearch(e.target.value)}
                   className="input w-full pl-9" />
@@ -157,14 +172,14 @@ export default function UserDashboard() {
             {activeState !== 'All' && (
               <div className="flex items-center gap-2 mb-5">
                 <span className="text-xl">{STATE_EMOJI[activeState]}</span>
-                <h2 className="text-lg font-semibold text-white">{activeState}</h2>
-                <span className="text-sm text-gray-500">· {lots.length} lots</span>
+                <h2 className="text-lg font-semibold text-slate-900 dark:text-white">{activeState}</h2>
+                <span className="text-sm text-slate-400 dark:text-gray-500">· {lots.length} lots</span>
               </div>
             )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {lots.length === 0 ? (
-                <p className="text-gray-500 col-span-3 text-center py-16">
+                <p className="text-slate-400 dark:text-gray-500 col-span-3 text-center py-16">
                   {allLots.length === 0 ? 'No parking lots available' : 'No lots match your filters'}
                 </p>
               ) : (
@@ -175,7 +190,7 @@ export default function UserDashboard() {
             </div>
           </>
         ) : (
-          <BookingTable bookings={myBookings} onCancel={handleCancel} />
+          <BookingTable bookings={myBookings} onCancel={handleCancel} onClearAll={handleClearAll} />
         )}
       </div>
 
