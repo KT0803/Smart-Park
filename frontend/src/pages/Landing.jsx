@@ -19,11 +19,12 @@ export default function Landing() {
             <button
               onClick={toggleTheme}
               title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-              className="w-9 h-9 rounded-lg flex items-center justify-center
+              className="rounded-lg flex items-center justify-center px-3 py-1.5
                          bg-slate-100 dark:bg-gray-800 border border-slate-200 dark:border-gray-700
-                         hover:scale-105 active:scale-95 transition-all duration-200"
+                         hover:scale-105 active:scale-95 transition-all duration-200
+                         text-xs font-medium text-slate-600 dark:text-gray-300"
             >
-              <span className="text-sm">{theme === 'dark' ? '☀️' : '🌙'}</span>
+              {theme === 'dark' ? 'Light Theme' : 'Dark Theme'}
             </button>
             <a href="/login" className="text-sm text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white transition-colors px-4 py-2">
               Sign In
@@ -43,7 +44,7 @@ export default function Landing() {
 
         <div className="relative z-10 max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 bg-blue-600/10 border border-blue-600/30 rounded-full px-4 py-1.5 text-sm text-blue-600 dark:text-blue-400 mb-8">
-            🅿️ <span>India's Smartest Parking Network</span>
+            <span>India's Smartest Parking Network</span>
           </div>
 
           <h1 className="text-5xl sm:text-7xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight mb-6">
@@ -61,7 +62,7 @@ export default function Landing() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/signup"
               className="btn-primary px-8 py-4 text-base rounded-xl shadow-xl shadow-blue-600/25 hover:shadow-blue-600/40 transition-all duration-300 hover:-translate-y-0.5">
-              🚀 Start Parking Free
+              Start Parking Free
             </a>
             <a href="/login"
               className="btn-secondary px-8 py-4 text-base rounded-xl hover:-translate-y-0.5 transition-all duration-300">
@@ -95,16 +96,15 @@ export default function Landing() {
           <p className="text-slate-500 dark:text-gray-400 text-center mb-12">Parking lots across major Indian cities</p>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
             {[
-              { state: 'Maharashtra', city: 'Mumbai · Pune', emoji: '🏙️' },
-              { state: 'Delhi', city: 'New Delhi', emoji: '🏛️' },
-              { state: 'Karnataka', city: 'Bangalore', emoji: '🌆' },
-              { state: 'Tamil Nadu', city: 'Chennai', emoji: '🌊' },
-              { state: 'Gujarat', city: 'Ahmedabad', emoji: '🏗️' },
-              { state: 'Rajasthan', city: 'Jaipur', emoji: '🏰' },
-            ].map(({ state, city, emoji }) => (
+              { state: 'Maharashtra', city: 'Mumbai · Pune' },
+              { state: 'Delhi', city: 'New Delhi' },
+              { state: 'Karnataka', city: 'Bangalore' },
+              { state: 'Tamil Nadu', city: 'Chennai' },
+              { state: 'Gujarat', city: 'Ahmedabad' },
+              { state: 'Rajasthan', city: 'Jaipur' },
+            ].map(({ state, city }) => (
               <div key={state}
                 className="card hover:border-blue-600/60 hover:-translate-y-1 transition-all duration-200 cursor-pointer text-center">
-                <p className="text-3xl mb-2">{emoji}</p>
                 <p className="text-sm font-semibold text-slate-800 dark:text-white">{state}</p>
                 <p className="text-xs text-slate-500 dark:text-gray-500 mt-0.5">{city}</p>
               </div>
@@ -119,12 +119,11 @@ export default function Landing() {
           <h2 className="text-3xl font-bold text-slate-900 dark:text-white text-center mb-12">Why Smart Park?</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {[
-              { icon: '🔍', title: 'Real-Time Search', desc: 'Find available slots instantly filtered by state, price, and distance.' },
-              { icon: '⚡', title: 'Instant Booking', desc: 'Book a specific slot in seconds. No waiting, no uncertainty.' },
-              { icon: '📊', title: 'Manager Dashboard', desc: 'Full analytics, booking management, and lot controls in one place.' },
-            ].map(({ icon, title, desc }) => (
+              { title: 'Real-Time Search', desc: 'Find available slots instantly filtered by state, price, and distance.' },
+              { title: 'Instant Booking', desc: 'Book a specific slot in seconds. No waiting, no uncertainty.' },
+              { title: 'Manager Dashboard', desc: 'Full analytics, booking management, and lot controls in one place.' },
+            ].map(({ title, desc }) => (
               <div key={title} className="card hover:border-blue-600/40 transition-colors">
-                <p className="text-4xl mb-4">{icon}</p>
                 <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">{title}</h3>
                 <p className="text-sm text-slate-500 dark:text-gray-400 leading-relaxed">{desc}</p>
               </div>
