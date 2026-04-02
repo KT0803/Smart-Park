@@ -97,7 +97,6 @@ npm run dev                   # Starts on http://localhost:5173
 |------|-------|----------|
 | User | `user@demo.com` | `User@123` |
 | Manager | `manager@demo.com` | `Manager@123` |
-| Driver | `driver@demo.com` | `Driver@123` |
 | Admin | `admin@demo.com` | `Admin@123` |
 
 ---
