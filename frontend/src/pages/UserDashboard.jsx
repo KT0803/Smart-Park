@@ -91,23 +91,20 @@ export default function UserDashboard() {
   }, {});
 
   return (
-    <div className="min-h-screen bg-slate-100 dark:bg-gray-950 transition-colors duration-300">
+    <div className="min-h-screen">
       <Navbar />
       <div className="max-w-7xl mx-auto px-4 py-8">
-        {/* Header */}
         <div className="mb-8">
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Welcome, {user?.name}</h1>
-          <p className="text-slate-500 dark:text-gray-400 mt-1">Find and book your parking spot</p>
+          <h1 className="text-3xl font-extrabold">Hi, {user?.name}</h1>
+          <p className="text-muted mt-1">Pick a lot, pick a slot.</p>
         </div>
 
-        {/* Main Tabs */}
-        <div className="flex gap-1 p-1 bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-800 rounded-xl w-fit mb-8">
-          {[['lots', 'Parking Lots'], ['myBookings', 'My Bookings']].map(([t, label]) => (
+        {/* Main tabs */}
+        <div className="flex gap-6 border-b border-line mb-8">
+          {[['lots', 'Parking lots'], ['myBookings', 'My bookings']].map(([t, label]) => (
             <button key={t} onClick={() => setTab(t)}
-              className={`px-5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                tab === t
-                  ? 'bg-blue-600 text-white shadow'
-                  : 'text-slate-500 dark:text-gray-400 hover:text-slate-800 dark:hover:text-gray-200'
+              className={`pb-2.5 -mb-px text-sm font-semibold border-b-2 ${
+                tab === t ? 'border-ink text-ink' : 'border-transparent text-muted hover:text-ink'
               }`}>
               {label}
             </button>
@@ -115,65 +112,52 @@ export default function UserDashboard() {
         </div>
 
         {loading ? (
-          <div className="flex items-center justify-center h-64">
-            <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
-          </div>
+          <p className="text-muted py-16">Loading…</p>
         ) : tab === 'lots' ? (
           <>
-            {/* State Filter Tabs */}
+            {/* State filter */}
             <div className="flex gap-2 overflow-x-auto pb-2 mb-6 scrollbar-hide">
               {STATES.map(s => (
                 <button key={s} onClick={() => setActiveState(s)}
-                  className={`flex-shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 ${
+                  className={`shrink-0 px-3 py-1.5 rounded text-sm border ${
                     activeState === s
-                      ? 'bg-blue-600 border-blue-600 text-white shadow-lg shadow-blue-600/25'
-                      : 'bg-white dark:bg-gray-900 border-slate-200 dark:border-gray-800 text-slate-500 dark:text-gray-400 hover:border-slate-400 dark:hover:border-gray-600 hover:text-slate-800 dark:hover:text-gray-200'
+                      ? 'bg-ink text-paper border-ink'
+                      : 'border-ink/30 text-ink hover:border-ink'
                   }`}>
-                  <span>{s}</span>
-                  <span className={`text-xs px-1.5 py-0.5 rounded-full ${
-                    activeState === s
-                      ? 'bg-white/20 text-white'
-                      : 'bg-slate-100 dark:bg-gray-800 text-slate-400 dark:text-gray-500'
-                  }`}>
-                    {stateCounts[s]}
-                  </span>
+                  {s} <span className="font-mono text-xs opacity-60 ml-0.5">{stateCounts[s]}</span>
                 </button>
               ))}
             </div>
 
-            {/* Search + Sort bar */}
+            {/* Search + sort */}
             <div className="flex flex-col sm:flex-row gap-3 mb-6">
-              <div className="relative flex-1">
-                <input type="text" placeholder="Search by name or location…"
-                  value={search} onChange={e => setSearch(e.target.value)}
-                  className="input w-full" />
-              </div>
+              <input type="text" placeholder="Search by name or location"
+                value={search} onChange={e => setSearch(e.target.value)}
+                className="input flex-1" />
               <input type="number" placeholder="Max ₹/hr"
                 value={maxPrice} onChange={e => setMaxPrice(e.target.value)}
-                className="input w-32" />
-              <select value={sortBy} onChange={e => setSortBy(e.target.value)} className="input w-44">
-                <option value="name">Sort: Name</option>
-                <option value="price">Sort: Price ↑</option>
-                <option value="slots">Sort: Most Free</option>
+                className="input sm:w-32" />
+              <select value={sortBy} onChange={e => setSortBy(e.target.value)} className="input sm:w-44">
+                <option value="name">Sort: name</option>
+                <option value="price">Sort: cheapest</option>
+                <option value="slots">Sort: most free</option>
               </select>
               {(search || maxPrice) && (
-                <button onClick={() => { setSearch(''); setMaxPrice(''); }} className="btn-secondary text-sm">
+                <button onClick={() => { setSearch(''); setMaxPrice(''); }} className="btn-secondary">
                   Clear
                 </button>
               )}
             </div>
 
-            {/* Section header */}
             {activeState !== 'All' && (
-              <div className="flex items-center gap-2 mb-5">
-                <h2 className="text-lg font-semibold text-slate-900 dark:text-white">{activeState}</h2>
-                <span className="text-sm text-slate-400 dark:text-gray-500">· {lots.length} lots</span>
-              </div>
+              <h2 className="text-lg font-bold mb-5">
+                {activeState} <span className="font-mono text-sm font-normal text-muted ml-1">{lots.length} lots</span>
+              </h2>
             )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {lots.length === 0 ? (
-                <p className="text-slate-400 dark:text-gray-500 col-span-3 text-center py-16">
+                <p className="text-muted col-span-full py-16">
                   {allLots.length === 0 ? 'No parking lots available' : 'No lots match your filters'}
                 </p>
               ) : (

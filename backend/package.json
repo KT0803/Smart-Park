@@ -32,6 +32,3 @@
     ]
   }
 }
-// axios upgraded to latest patch
-// test script added to package.json
-// unused dependency removed

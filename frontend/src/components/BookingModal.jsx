@@ -50,7 +50,7 @@ export default function BookingModal({ lot, onClose, onBooked }) {
     setLoading(true);
     try {
       await bookingsAPI.create({ lotId: lot._id, slotId: selectedSlot._id, vehiclePlate: vehiclePlate.trim().toUpperCase() });
-      toast.success('Booking confirmed! 🎉');
+      toast.success('Booking confirmed');
       onBooked();
       onClose();
     } catch (err) {
@@ -61,55 +61,46 @@ export default function BookingModal({ lot, onClose, onBooked }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-      <div className="card w-full max-w-md animate-fadein">
-        <div className="flex items-center justify-between mb-6">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/50">
+      <div className="card w-full max-w-md animate-fadein !p-6" style={{ boxShadow: '5px 5px 0 rgb(var(--ink))' }}>
+        <div className="flex items-start justify-between mb-6">
           <div>
-            <h2 className="text-lg font-bold text-slate-900 dark:text-white">Book a Slot</h2>
-            <p className="text-sm text-slate-500 dark:text-gray-400">{lot.name}</p>
+            <h2 className="text-xl font-bold">Book a slot</h2>
+            <p className="text-sm text-muted">{lot.name}</p>
           </div>
-          <button onClick={onClose}
-            className="text-2xl text-slate-400 dark:text-gray-500 hover:text-slate-700 dark:hover:text-gray-300 transition-colors">
+          <button onClick={onClose} aria-label="Close"
+            className="text-2xl leading-none text-muted hover:text-ink">
             ×
           </button>
         </div>
 
         <div className="space-y-5">
-          {/* Vehicle Plate with validation */}
           <div>
-            <label className="label">Vehicle Number Plate</label>
+            <label className="label" htmlFor="plate">Vehicle number plate</label>
             <input
-              className={`input ${plateError ? 'ring-2 ring-red-500 border-transparent' : ''}`}
-              placeholder="e.g. MH 01 AB 1234"
+              id="plate"
+              className={`input font-mono ${plateError ? '!border-bad' : ''}`}
+              placeholder="MH 01 AB 1234"
               value={vehiclePlate}
               onChange={handlePlateChange}
               maxLength={13}
               spellCheck={false}
             />
             {plateError ? (
-              <p className="text-xs text-red-500 dark:text-red-400 mt-1.5 flex items-center gap-1">
-                <span>⚠️</span> {plateError}
-              </p>
+              <p className="text-xs text-bad mt-1.5">{plateError}</p>
             ) : vehiclePlate && isValidPlate(vehiclePlate) ? (
-              <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-1.5 flex items-center gap-1">
-                <span>✅</span> Valid Indian number plate
-              </p>
+              <p className="text-xs text-ok mt-1.5">Plate looks good</p>
             ) : (
-              <p className="text-xs text-slate-400 dark:text-gray-500 mt-1.5">
-                Format: STATE CODE · DISTRICT · SERIES · NUMBER (e.g. MH 01 AB 1234)
-              </p>
+              <p className="text-xs text-muted mt-1.5">State code, district, series, number.</p>
             )}
           </div>
 
-          {/* Slot Grid */}
           <div>
             <label className="label">
-              Select Slot <span className="text-slate-400 dark:text-gray-500 font-normal">({availableSlots.length} available)</span>
+              Slot <span className="normal-case tracking-normal font-normal">({availableSlots.length} free)</span>
             </label>
             {fetchingSlots ? (
-              <div className="flex justify-center py-8">
-                <div className="w-6 h-6 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
-              </div>
+              <p className="text-sm text-muted py-6">Loading slots…</p>
             ) : (
               <div className="grid grid-cols-4 gap-2 max-h-48 overflow-y-auto">
                 {slots.map(s => (
@@ -117,12 +108,12 @@ export default function BookingModal({ lot, onClose, onBooked }) {
                     key={s._id}
                     disabled={s.status !== 'available'}
                     onClick={() => setSelectedSlot(s)}
-                    className={`py-2 rounded-lg text-xs font-medium border transition-all ${
+                    className={`py-2 rounded font-mono text-xs border transition-colors ${
                       s.status !== 'available'
-                        ? 'bg-red-50 dark:bg-red-900/30 border-red-200 dark:border-red-800 text-red-400 cursor-not-allowed'
+                        ? 'border-line text-muted/50 line-through cursor-not-allowed'
                         : selectedSlot?._id === s._id
-                        ? 'bg-blue-600 border-blue-500 text-white'
-                        : 'bg-slate-100 dark:bg-gray-800 border-slate-200 dark:border-gray-700 text-slate-700 dark:text-gray-300 hover:border-blue-500'
+                        ? 'bg-ink text-paper border-ink'
+                        : 'border-ink/40 hover:border-ink hover:bg-accent/30'
                     }`}
                   >
                     {s.slotNumber}
@@ -139,7 +130,7 @@ export default function BookingModal({ lot, onClose, onBooked }) {
               disabled={loading || !selectedSlot || !!plateError || !vehiclePlate}
               className="btn-primary flex-1"
             >
-              {loading ? 'Booking…' : 'Confirm Booking'}
+              {loading ? 'Booking…' : 'Confirm'}
             </button>
           </div>
         </div>
