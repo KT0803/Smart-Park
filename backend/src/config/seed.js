@@ -54,26 +54,36 @@ const LOTS = [
 
 const seedDemoData = async () => {
   try {
-    const existing = await User.findOne({ email: 'admin@smartpark.in' });
-    if (existing) return; // Already seeded
-
-    console.log('🌱 Seeding demo data...');
-
-    // Create all users individually so Mongoose pre-save bcrypt hook fires
+    // Create demo users individually so the Mongoose pre-save bcrypt hook fires.
+    // Each one is checked on its own so a restart or a second instance never duplicates them.
     const demoUsers = [
       { name: 'Smart Park User',    email: 'user@smartpark.in',    password: 'User@Smart#2026',    role: 'user',    isApproved: true },
       { name: 'Smart Park Manager', email: 'manager@smartpark.in', password: 'Manager@Smart#2026', role: 'manager', isApproved: true },
       { name: 'Smart Park Admin',   email: 'admin@smartpark.in',   password: 'Admin@Smart#2026',   role: 'admin',   isApproved: true },
     ];
     const users = [];
+    let createdUsers = 0;
     for (const u of demoUsers) {
-      users.push(await User.create(u));
+      let doc = await User.findOne({ email: u.email });
+      if (!doc) {
+        doc = await User.create(u);
+        createdUsers++;
+      }
+      users.push(doc);
     }
 
     const manager = users.find(u => u.role === 'manager');
 
-    // Seed all 36 lots
-    for (const lotData of LOTS) {
+    // Only add lots that are not there yet (matched on name + location)
+    const existingLots = await ParkingLot.find({}, 'name location');
+    const have = new Set(existingLots.map(l => `${l.name}|${l.location}`));
+    const missing = LOTS.filter(l => !have.has(`${l.name}|${l.location}`));
+
+    if (createdUsers === 0 && missing.length === 0) return; // Already seeded
+
+    console.log('🌱 Seeding demo data...');
+
+    for (const lotData of missing) {
       const lot = await ParkingLot.create({
         ...lotData,
         availableSlots: lotData.totalSlots,
@@ -81,7 +91,6 @@ const seedDemoData = async () => {
         isActive: true,
       });
 
-      // Create slots
       const slotDocs = [];
       for (let i = 1; i <= lot.totalSlots; i++) {
         slotDocs.push({ lotId: lot._id, slotNumber: `S${String(i).padStart(3, '0')}`, status: 'available' });
@@ -93,7 +102,7 @@ const seedDemoData = async () => {
     console.log('   👤 user@smartpark.in / User@Smart#2026');
     console.log('   🏢 manager@smartpark.in / Manager@Smart#2026');
     console.log('   ⚙️  admin@smartpark.in / Admin@Smart#2026');
-    console.log(`   🅿️  ${LOTS.length} parking lots across 6 states`);
+    console.log(`   🅿️  ${missing.length} parking lots added`);
   } catch (err) {
     console.error('Seed error:', err.message);
   }
